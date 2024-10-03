@@ -5,7 +5,7 @@
 #version: '3.8'
 
 services:
-  app:
+  user-service:
     build: .
     container_name: app
     depends_on:
@@ -16,10 +16,10 @@ services:
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create
     ports:
-      - "8080:8080"
+      - "8090:8080"
 
   db-postgres:
-    image: 'postgres:15-alpine'
+    image: 'postgres:13-alpine'
     container_name: db-postgres
     environment:
       - POSTGRES_USER=postgres

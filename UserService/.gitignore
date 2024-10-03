@@ -3,6 +3,10 @@
 *.class
 *.war
 *.ear
+*.mvn
+*HELP.md
+*mvnw
+*mvnw.cmd
 target/
 
 ## Robovm
