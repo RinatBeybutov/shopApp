@@ -5,7 +5,7 @@ ShopApplication - это бэкенд для пиццерии, в дальней
 
 # Архитектура
 
-[(скрин)](https://github.com/RinatBeybutov/shopApp/blob/master/arhitecture.jpg)
+![(скрин)](https://github.com/RinatBeybutov/shopApp/blob/master/arhitecture.jpg)
 
 ## UserService
 
