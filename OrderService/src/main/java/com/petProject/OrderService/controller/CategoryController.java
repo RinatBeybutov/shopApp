@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.petProject.OrderService.config.API.CATEGORIES_API;
+
 @RestController
-@RequestMapping("categories")
+@RequestMapping(CATEGORIES_API)
 @RequiredArgsConstructor
 public class CategoryController {
 

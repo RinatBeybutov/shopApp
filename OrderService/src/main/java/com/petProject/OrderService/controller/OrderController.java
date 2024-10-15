@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+import static com.petProject.OrderService.config.API.ORDERS_API;
+
 @RestController
-@RequestMapping("orders")
+@RequestMapping(ORDERS_API)
 @RequiredArgsConstructor
 public class OrderController {
 

@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.petProject.UserService.config.API.USER_API;
+
 @RestController
-@RequestMapping("users")
+@RequestMapping(USER_API)
 @RequiredArgsConstructor
 public class UserController {
 

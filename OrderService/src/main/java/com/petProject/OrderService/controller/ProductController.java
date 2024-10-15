@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.petProject.OrderService.config.API.PRODUCTS_API;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("products")
+@RequestMapping(PRODUCTS_API)
 public class ProductController {
 
     private final ProductService productService;
