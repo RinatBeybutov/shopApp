@@ -104,3 +104,8 @@ gradle-app.setting
 /html/build/
 /ios/build/
 /ios-moe/build/
+
+
+.angular*
+*/dist*
+*/node_modules
