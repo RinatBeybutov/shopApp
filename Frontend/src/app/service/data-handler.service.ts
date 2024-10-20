@@ -1,0 +1,27 @@
+import { Injectable } from '@angular/core';
+import {Category} from "../model/Category";
+import {TestData} from "../data/TestData";
+import {Product} from "../model/Product";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataHandlerService {
+
+  constructor(private http: HttpClient) { }
+
+  getCategories() :Observable< Category[] >{
+    return this.http.get<Category[]>('http://localhost:80/categories')
+      .pipe();
+  }
+
+  getProducts() : Product[] {
+    return TestData.products;
+  }
+
+  getProductsByCategory(categoryId: number): Product[] {
+    return TestData.products.filter(product => product.categoryId === categoryId);
+  }
+}
