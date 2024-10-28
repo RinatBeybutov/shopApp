@@ -1,5 +1,5 @@
 <div class="sidebar">
-  <div *ngFor="let category of categories" (click)="showProducts(category.id)">
+  <div *ngFor="let category of categories" (click)="changeCurrentCategory(category.id)">
     <a>
       <p>{{category.name}}</p>
     </a>

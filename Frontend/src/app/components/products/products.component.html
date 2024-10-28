@@ -1,1 +1,10 @@
-<H1>products works!</H1>
+<div class="col-3-4">
+  <div *ngFor="let product of productsShown">
+    <div class="product">
+      <a>
+        <p>{{product.name}}</p>
+      </a>
+      <button>Добавить в корзину</button>
+    </div>
+  </div>
+</div>

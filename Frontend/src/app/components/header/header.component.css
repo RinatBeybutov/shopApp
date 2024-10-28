@@ -25,6 +25,11 @@
   margin-right: 40px; /* Добавляем отступ между пунктами меню */
 }
 
-#H1 {
+a {
+  font-size: 25px;
+}
+
+H1 {
   margin-left: 40px;
+  font-size: 45px;
 }

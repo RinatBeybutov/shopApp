@@ -1,27 +1,29 @@
 import { Injectable } from '@angular/core';
 import {Category} from "../model/Category";
-import {TestData} from "../data/TestData";
 import {Product} from "../model/Product";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
+import {User} from "../model/User";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataHandlerService {
 
+  currentCategory: BehaviorSubject<number|null> =
+    new BehaviorSubject<number|null>(null);
+
   constructor(private http: HttpClient) { }
 
   getCategories() :Observable< Category[] >{
-    return this.http.get<Category[]>('http://localhost:80/categories')
-      .pipe();
+    return this.http.get<Category[]>('http://localhost:80/categories');
   }
 
-  getProducts() : Product[] {
-    return TestData.products;
+  getProducts(): Observable<Product[]>{
+    return this.http.get<Product[]>('http://localhost:80/products');
   }
 
-  getProductsByCategory(categoryId: number): Product[] {
-    return TestData.products.filter(product => product.categoryId === categoryId);
+  getUsers(): Observable<User[]>{
+    return this.http.get<User[]>('http://localhost:80/users');
   }
 }

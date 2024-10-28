@@ -3,11 +3,20 @@
     <H1>Pizza</H1>
     <nav>
       <ul class="menu__list">
-        <li>
-          <a class="menu__list-item"> Пользователи!</a>
+        <li class="menu__list-item">
+          <ng-select [items]="users"
+                     bindLabel="name"
+                     placeholder="Выберете пользователя"
+                     appendTo="body"
+                     multiple="false"
+                     [(ngModel)]="selectedUser" >
+          </ng-select>
         </li>
         <li>
-          <a class="menu__list-item"> Список заказов</a>
+          <a class="menu__list-item" routerLink="/"> Каталог</a>
+        </li>
+        <li>
+          <a class="menu__list-item" routerLink="/orders"> Список заказов</a>
         </li>
         <li>
           <a class="menu__list-item" routerLink="/basket">Корзина</a>
