@@ -15,6 +15,12 @@ spring:
     name: Gateway
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: UserService
           uri: http://localhost:8081
