@@ -30,6 +30,10 @@
 		<java.version>17</java.version>
 		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
 		<org.lombok.version>1.18.34</org.lombok.version>
+		<postgres.port>5432</postgres.port>
+		<jdbc.url>jdbc:postgresql://host.docker.internal:${postgres.port}/pizzeria</jdbc.url>
+		<postgres.username>postgres</postgres.username>
+		<postgres.password>postgres</postgres.password>
 	</properties>
 
 	<dependencies>
@@ -117,6 +121,24 @@
 			<scope>test</scope>
 		</dependency>
 
+        <!-- flyway -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>10.13.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-maven-plugin</artifactId>
+            <version>10.13.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-database-postgresql</artifactId>
+            <version>10.13.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
 	</dependencies>
 
 	<build>
@@ -157,6 +179,17 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>10.13.0</version>
+                <configuration>
+                    <url>${jdbc.url}</url>
+                    <user>${postgres.username}</user>
+                    <password>${postgres.password}</password>
+<!--                    <validateMigrationNaming>true</validateMigrationNaming>-->
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 </project>

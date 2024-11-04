@@ -11,7 +11,7 @@ services:
     depends_on:
       - db-postgres
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-postgres:5432/userService
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/userService
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create
