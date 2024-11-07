@@ -3,12 +3,12 @@ import {DataHandlerService} from "../../service/data-handler.service";
 import {User} from "../../model/User";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {FormsModule} from "@angular/forms";
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgSelectModule, FormsModule, RouterLink],
+  imports: [NgSelectModule, FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
