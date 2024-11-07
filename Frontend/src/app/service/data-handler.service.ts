@@ -2,17 +2,13 @@ import { Injectable } from '@angular/core';
 import {Category} from "../model/Category";
 import {Product} from "../model/Product";
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {User} from "../model/User";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataHandlerService {
-
-  currentCategory: BehaviorSubject<number|null> =
-    new BehaviorSubject<number|null>(null);
-
   constructor(private http: HttpClient) { }
 
   getCategories() :Observable< Category[] >{

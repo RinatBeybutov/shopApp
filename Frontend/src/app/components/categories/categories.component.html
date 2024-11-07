@@ -1,6 +1,6 @@
 <div class="sidebar">
   <div *ngFor="let category of categories" (click)="changeCurrentCategory(category.id)">
-    <a>
+    <a [class.active]="category.id === currentCategoryId">
       <p>{{category.name}}</p>
     </a>
   </div>

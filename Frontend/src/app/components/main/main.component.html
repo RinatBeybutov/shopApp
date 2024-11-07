@@ -1,2 +1,4 @@
-<app-categories></app-categories>
-<app-products></app-products>
+<app-categories [categories]="categories"
+                [currentCategoryId]="currentCategoryId" 
+                (onCategoryChange)="changeCategory($event)"></app-categories>
+<app-products [productsShown]="productsShown"></app-products>

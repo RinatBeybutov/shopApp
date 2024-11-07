@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {DataHandlerService} from "../../service/data-handler.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Category} from "../../model/Category";
 import {NgForOf} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
@@ -17,25 +16,19 @@ import {Router} from "@angular/router";
 })
 export class CategoriesComponent implements OnInit {
 
-  categories: Category[] | undefined;
+  @Input() categories: Category[] | undefined;
+  @Input() currentCategoryId: number | undefined;
+  @Output() onCategoryChange = new EventEmitter<number>();
 
-  constructor(private dataHandler: DataHandlerService,
-              private router: Router ) {
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.dataHandler.getCategories()
-      .subscribe(categories =>  {
-        this.categories = categories;
-        this.dataHandler.currentCategory.next(categories[0].id);
-      });
-
     this.router.events.subscribe(event => {
       console.log(event);
     })
   }
 
-  changeCurrentCategory(id: number) {
-    this.dataHandler.currentCategory.next(id);
+  changeCurrentCategory(id: number): void {
+    this.onCategoryChange.emit(id);
   }
 }
