@@ -2,6 +2,7 @@ package com.petProject.OrderService.controller;
 
 import com.petProject.OrderService.dto.ProductCreateDto;
 import com.petProject.OrderService.dto.ProductViewDto;
+import com.petProject.OrderService.dto.ProductWithCountViewDto;
 import com.petProject.OrderService.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,13 @@ public class ProductController {
         return ResponseEntity.ok(productService.create(dto));
     }
 
-    @GetMapping("/{categoryId}")
+    @GetMapping("category/{categoryId}")
     public ResponseEntity<List<ProductViewDto>> getProductsByCategoryId(@PathVariable Integer categoryId) {
         return ResponseEntity.ok(productService.getAllByCategoryId(categoryId));
+    }
+
+    @GetMapping("order/{orderId}")
+    public ResponseEntity<List<ProductWithCountViewDto>> getProductsInOrder(@PathVariable Integer orderId) {
+        return ResponseEntity.ok(productService.getProductsInOrder(orderId));
     }
 }
