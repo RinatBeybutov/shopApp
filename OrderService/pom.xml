@@ -61,6 +61,13 @@
 			<version>42.7.2</version>
 		</dependency>
 
+		<!-- Автодокументирование по контроллерам: http://localhost:{{port}}/swagger-ui/index.html -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
 		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

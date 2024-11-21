@@ -23,14 +23,10 @@ spring:
             allowedHeaders: "*"
       routes:
         - id: UserService
-          uri: http://localhost:8081
+          uri: http://${user.service.host:localhost}:${user.service.port:8081}
           predicates:
-            - Path=/users
-          filters:
-            - PrefixPath=/api/user-service
+            - Path=/api/v1/users/**
         - id: OrderService
-          uri: http://localhost:8082
+          uri: http://${order.service.host:localhost}:${user.service.port:8082}
           predicates:
-            - Path=/products/**, /orders/**, /categories/**
-          filters:
-            - PrefixPath=/api/order-service
+            - Path=/api/v1/products/**, /api/v1/orders/**, /api/v1/categories/**

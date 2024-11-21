@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,6 +17,9 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "uuid")
+    private UUID uuid;
+
     @Column(name = "name")
     private String name;
 
@@ -24,5 +28,10 @@ public class UserEntity {
 
     @Column(name = "email")
     private String email;
+
+    @PrePersist
+    private void generateUuid() {
+        setUuid(UUID.randomUUID());
+    }
 
 }
