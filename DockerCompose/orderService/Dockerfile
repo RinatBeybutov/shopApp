@@ -1,7 +1,7 @@
 FROM maven:3.8.4-openjdk-17
 
 WORKDIR /app
-COPY ./OrderService.jar .
+COPY ./OrderService-0.0.1-SNAPSHOT.jar ./OrderService.jar
 
 EXPOSE 8082
 
