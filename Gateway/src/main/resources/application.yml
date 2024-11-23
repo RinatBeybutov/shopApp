@@ -27,6 +27,6 @@ spring:
           predicates:
             - Path=/api/v1/users/**
         - id: OrderService
-          uri: http://${order.service.host:localhost}:${user.service.port:8082}
+          uri: http://${order.service.host:localhost}:${order.service.port:8082}
           predicates:
             - Path=/api/v1/products/**, /api/v1/orders/**, /api/v1/categories/**
