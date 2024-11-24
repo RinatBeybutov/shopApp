@@ -12,14 +12,14 @@ export class DataHandlerService {
   constructor(private http: HttpClient) { }
 
   getCategories() :Observable< Category[] >{
-    return this.http.get<Category[]>('http://localhost:80/categories');
+    return this.http.get<Category[]>('/api/v1/categories');
   }
 
   getProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>('http://localhost:80/products');
+    return this.http.get<Product[]>('/api/v1/products');
   }
 
   getUsers(): Observable<User[]>{
-    return this.http.get<User[]>('http://localhost:80/users');
+    return this.http.get<User[]>('/api/v1/users');
   }
 }

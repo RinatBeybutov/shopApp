@@ -40,9 +40,7 @@ export class BasketService {
       "products" : products
     }
 
-    this.http.post("http://localhost:80/orders",
-      body)
-      .subscribe();
+    this.http.post("/api/v1/orders", body).subscribe();
   }
 
   formatDate(date: Date): string {
