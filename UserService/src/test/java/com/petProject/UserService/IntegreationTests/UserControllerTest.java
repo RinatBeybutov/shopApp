@@ -23,9 +23,9 @@ public class UserControllerTest extends DbTestContainersConfiguration {
 
     private static final int USER_ID = 1;
 
-    private static final String USER_API_URL = "/users/{id}";
+    private static final String USER_API_URL = "/api/user-service/users/{id}";
 
-    private static final String USERS_API_URL = "/users";
+    private static final String USERS_API_URL = "/api/user-service/users";
 
     @Autowired
     private TestRestTemplate restTemplate;
