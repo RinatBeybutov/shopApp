@@ -15,11 +15,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Change directory
-        run: cd ./UserService/
-      - name: Sout
-        run: ll
       - name: Maven Package
+        working-directory: ./UserService/
         run: mvn -B clean package -DskipTests
       - name: Run Tests
         run: mvn -B test --file pom.xml
