@@ -19,4 +19,5 @@ jobs:
         working-directory: ./UserService/
         run: mvn -B clean package -DskipTests
       - name: Run Tests
+        working-directory: ./UserService/
         run: mvn -B test --file pom.xml
