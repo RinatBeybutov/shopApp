@@ -1,0 +1,10 @@
+<div class="col-3-4">
+  <div *ngFor="let product of productsShown">
+    <div class="product">
+      <a>
+        <p>{{product.name}}</p>
+      </a>
+      <button (click)="addToBasket(product)">Добавить в корзину</button>
+    </div>
+  </div>
+</div>

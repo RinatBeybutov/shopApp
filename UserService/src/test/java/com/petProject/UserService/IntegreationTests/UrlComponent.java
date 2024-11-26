@@ -9,6 +9,6 @@ public class UrlComponent {
     private int port;
 
     public String getBaseUrl(int port) {
-        return String.format("http://localhost:%d/", port);
+        return String.format("http://localhost:%d/api/v1", port);
     }
 }

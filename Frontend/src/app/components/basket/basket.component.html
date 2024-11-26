@@ -1,0 +1,14 @@
+<div class="col-3-4">
+  <div *ngFor="let product of idToProduct.entries()">
+    <div class="product">
+      <a>
+        <p>{{ product[1].name }}</p>
+      </a>
+      <a>
+        Количество: {{ product[1].count }}
+      </a>
+      <button (click)="remove(product[0])">Удалить</button>
+    </div>
+  </div>
+  <button (click)="saveOrder()">Добавить</button>
+</div>

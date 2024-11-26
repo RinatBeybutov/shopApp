@@ -1,0 +1,18 @@
+.col-3-4 {
+  float: right;
+  width: 75%;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.order a {
+  margin-right: 30px;
+}
+:host {
+    display: block;
+    height: 100%;
+}
