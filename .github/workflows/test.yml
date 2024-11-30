@@ -15,9 +15,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Maven Package
+      - name: Maven UserService Package
         working-directory: ./UserService/
         run: mvn -B clean package -DskipTests
-      - name: Run Tests
+      - name: Run UserService Tests
         working-directory: ./UserService/
+        run: mvn -B test --file pom.xml
+      - name: Maven OrderService Package
+        working-directory: ./OrderService/
+        run: mvn -B clean package -DskipTests
+      - name: Run OrderService Tests
+        working-directory: ./OrderService/
         run: mvn -B test --file pom.xml
