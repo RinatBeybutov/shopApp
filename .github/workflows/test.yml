@@ -5,7 +5,7 @@ on:
     branches:
       - master
 jobs:
-  testUserService:
+  userService:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,6 +21,16 @@ jobs:
       - name: Run UserService Tests
         working-directory: ./UserService/
         run: mvn -B test --file pom.xml
+  orderService:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
       - name: Maven OrderService Package
         working-directory: ./OrderService/
         run: mvn -B clean package -DskipTests
