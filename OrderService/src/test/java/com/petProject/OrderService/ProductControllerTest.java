@@ -35,7 +35,7 @@ class ProductControllerTest extends DbTestContainersConfiguration {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         ProductViewDto[] products = response.getBody();
         assertNotNull(products);
-        assertEquals(3, products.length);
+        assertEquals(10, products.length);
 
         assertThat(products[0])
                 .usingRecursiveComparison()

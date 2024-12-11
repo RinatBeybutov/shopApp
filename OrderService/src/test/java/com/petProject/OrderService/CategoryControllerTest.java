@@ -35,7 +35,7 @@ class CategoryControllerTest extends DbTestContainersConfiguration {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         var categories = response.getBody();
         assertNotNull(categories);
-        assertEquals(2, categories.length);
+        assertEquals(4, categories.length);
 
         assertThat(categories[0])
                 .usingRecursiveComparison()
