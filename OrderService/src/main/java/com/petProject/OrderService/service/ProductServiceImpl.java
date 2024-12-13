@@ -57,13 +57,4 @@ public class ProductServiceImpl implements ProductService {
                 .map(productMapper::toDto)
                 .toList();
     }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<ProductWithCountViewDto> getProductsInOrder(Integer orderId) {
-        return productToOrderRepository.findAllByOrderId(orderId)
-                .stream()
-                .map(productMapper::toCountDto)
-                .toList();
-    }
 }

@@ -9,7 +9,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+import java.util.UUID;
 
 import static com.petProject.OrderService.config.API.ORDERS_API;
 
@@ -21,10 +23,12 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @GetMapping
+    @GetMapping("/{userUuid}")
     @Operation(summary = "Получение всех заказов")
-    public ResponseEntity<List<OrderViewDto>> getOrders() {
-        return ResponseEntity.ok(orderService.getOrders());
+    public ResponseEntity<List<OrderViewDto>> getOrders(@PathVariable
+                                                        @Parameter(description = "Идентификатор пользователя")
+                                                        UUID userUuid) {
+        return ResponseEntity.ok(orderService.getOrders(userUuid));
     }
 
     @PostMapping
