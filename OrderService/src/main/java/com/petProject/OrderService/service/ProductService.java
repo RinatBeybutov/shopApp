@@ -14,5 +14,5 @@ public interface ProductService {
 
     List<ProductViewDto> getAllByCategoryId(Integer categoryId);
 
-    List<ProductWithCountViewDto> getProductsInOrder(Integer orderId);
+    //List<ProductWithCountViewDto> getProductsInOrder(Integer orderId);
 }

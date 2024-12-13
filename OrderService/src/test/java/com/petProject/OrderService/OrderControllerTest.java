@@ -11,8 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
-import static com.petProject.OrderService.OrderControllerTestData.ORDERS_API_URL;
-import static com.petProject.OrderService.OrderControllerTestData.getViewOrderDto;
+import static com.petProject.OrderService.OrderControllerTestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DisplayName("Тестирование OrderController")
 class OrderControllerTest extends DbTestContainersConfiguration{
+
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -49,7 +49,9 @@ class OrderControllerTest extends DbTestContainersConfiguration{
         return UriComponentsBuilder
                 .fromHttpUrl(urlComponent.getBaseUrl())
                 .path(ORDERS_API_URL)
-                .build()
+//                .queryParam("userUuid", USER_UUID)
+                .buildAndExpand(USER_UUID)
+//                .build()
                 .toUri();
     }
 }

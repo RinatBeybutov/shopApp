@@ -58,12 +58,12 @@ public class ProductServiceImpl implements ProductService {
                 .toList();
     }
 
-    @Override
+    /*@Override
     @Transactional(readOnly = true)
     public List<ProductWithCountViewDto> getProductsInOrder(Integer orderId) {
         return productToOrderRepository.findAllByOrderId(orderId)
                 .stream()
                 .map(productMapper::toCountDto)
                 .toList();
-    }
+    }*/
 }

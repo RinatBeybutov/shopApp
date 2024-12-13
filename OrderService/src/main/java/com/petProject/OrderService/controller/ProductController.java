@@ -43,11 +43,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllByCategoryId(categoryId));
     }
 
-    @GetMapping("order/{orderId}")
+    /*@GetMapping("order/{orderId}")
     @Operation(summary = "Получение всех продуктов по заказу")
     public ResponseEntity<List<ProductWithCountViewDto>> getProductsInOrder(@PathVariable
                                                                             @Parameter(description = "Идентификатор заказа")
                                                                             Integer orderId) {
         return ResponseEntity.ok(productService.getProductsInOrder(orderId));
-    }
+    }*/
 }
