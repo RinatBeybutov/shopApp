@@ -13,19 +13,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>MetricsService</name>
 	<description>Demo project for Spring Boot</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
@@ -46,22 +33,12 @@
 			<artifactId>jackson-databind-nullable</artifactId>
 			<version>0.2.1</version>
 		</dependency>
-		<!--<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.7.0</version>
-		</dependency>
--->
+
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-		<!--<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.9.2</version>
-		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -107,19 +84,11 @@
 			<version>3.17.3</version>
 		</dependency>
 
-		<!--<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.13</version>
-		</dependency>-->
-
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.7.0</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
@@ -144,7 +113,7 @@
 						<importMapping>SearchDto=com.rzd.common.dto.SearchDto</importMapping>
 					</importMappings>
 					<inputSpec>
-						${project.basedir}/src/main/resources/static/swagger.yaml
+						${project.basedir}/src/main/resources/static/open-api.yaml
 					</inputSpec>
 					<generatorName>spring</generatorName>
 					<apiPackage>com.petProject.MetricsService.controller</apiPackage>
@@ -155,7 +124,6 @@
 					<skipValidateSpec>true</skipValidateSpec>
 					<configOptions>
 						<delegatePattern>true</delegatePattern>
-
 						<validateSpec>false</validateSpec>
 						<performBeanValidation>false</performBeanValidation>
 						<useBeanValidation>false</useBeanValidation>

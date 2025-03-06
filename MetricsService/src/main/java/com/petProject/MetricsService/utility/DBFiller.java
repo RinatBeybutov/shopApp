@@ -1,4 +1,4 @@
-package com.petProject.MetricsService;
+package com.petProject.MetricsService.utility;
 
 import com.petProject.MetricsService.entity.StatisticEntity;
 import com.petProject.MetricsService.repository.StatisticRepository;

@@ -1,4 +1,4 @@
-package com.petProject.MetricsService;
+package com.petProject.MetricsService.utility;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
