@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.8</version>
+		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.petProject</groupId>
@@ -36,21 +36,32 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>2.4.6</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.1</version>
+		</dependency>
+		<!--<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+-->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -60,9 +71,9 @@
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
-			<scope>provided</scope>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -96,11 +107,19 @@
 			<version>3.17.3</version>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.6.13</version>
+		</dependency>-->
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.7.0</version>
 		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -108,8 +127,15 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>6.6.0</version>
+				<version>7.8.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
 
+					</execution>
+				</executions>
 				<configuration>
 					<importMappings>
 						<importMapping>Pageable=org.springframework.data.domain.Pageable</importMapping>
@@ -117,77 +143,30 @@
 						<importMapping>Sort=org.springframework.data.domain.Sort</importMapping>
 						<importMapping>SearchDto=com.rzd.common.dto.SearchDto</importMapping>
 					</importMappings>
+					<inputSpec>
+						${project.basedir}/src/main/resources/static/swagger.yaml
+					</inputSpec>
 					<generatorName>spring</generatorName>
-					<generateSupportingFiles>false</generateSupportingFiles>
-					<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+					<apiPackage>com.petProject.MetricsService.controller</apiPackage>
+					<modelPackage>com.petProject.MetricsService.dto</modelPackage>
+					<supportingFilesToGenerate>
+						ApiUtil.java
+					</supportingFilesToGenerate>
+					<skipValidateSpec>true</skipValidateSpec>
 					<configOptions>
 						<delegatePattern>true</delegatePattern>
-						<performBeanValidation>true</performBeanValidation>
-						<useBeanValidation>true</useBeanValidation>
+
+						<validateSpec>false</validateSpec>
+						<performBeanValidation>false</performBeanValidation>
+						<useBeanValidation>false</useBeanValidation>
 						<useJakartaEe>true</useJakartaEe>
 					</configOptions>
 				</configuration>
-
 			</plugin>
 
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>io.swagger</groupId>
-				<artifactId>swagger-codegen-maven-plugin</artifactId>
-				<version>2.4.8</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<inputSpec>${project.basedir}/src/main/resources/swagger.yaml</inputSpec>
-					<language>spring</language>
-					<library>spring-boot</library>
-					<apiPackage>com.petProject.MetricsService.controller</apiPackage>
-					<modelPackage>com.petProject.MetricsService.dto</modelPackage>
-					<generateApis>true</generateApis>
-					<generateApiTests>false</generateApiTests>
-					<generateModelTests>false</generateModelTests>
-					<generateApiDocumentation>false</generateApiDocumentation>
-					<generateModels>true</generateModels>
-					<generateSupportingFiles>false</generateSupportingFiles>
-					<languageSpecificPrimitives>true</languageSpecificPrimitives>
-					<typeMappings>
-						<typeMapping>OffsetDateTime=java.time.LocalDateTime</typeMapping>
-					</typeMappings>
-					<importMappings>
-						<importMapping>LocalDateTime=OffsetDateTime</importMapping>
-					</importMappings>
-					<configOptions>
-						<interfaceOnly>true</interfaceOnly>
-						<java8>false</java8>
-						<dateLibrary>java8</dateLibrary>
-					</configOptions>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.0.0</version>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>${project.build.directory}/generated-sources/swagger/src/main/java</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

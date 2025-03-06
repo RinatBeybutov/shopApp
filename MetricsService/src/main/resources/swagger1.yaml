@@ -1,0 +1,45 @@
+swagger: '3.0'
+info:
+  title: Metrics Api
+  description: 'Metrics Api'
+
+#servers:
+#  - url: 'http://localhost:8083'
+#    description: local server
+
+tags:
+  - name: Metrics
+    description: API для получения метрик заказов
+
+paths:
+  /metrics:
+    get:
+      summary: Получение метрик заказов
+      operationId: getMetrics
+      tags:
+        - Metrics
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MetricsDto'
+
+definitions:
+  schemas:
+    MetricsDto:
+      type: "object"
+      properties:
+        totalOrders:
+          type: "integer"
+        hourly:
+          type: array
+          items:
+            $ref: '#/definitions/MetricsDtoHourly'
+
+    MetricsDtoHourly:
+      type: "object"
+      properties:
+        hour:
+          type: "string"
+        orderCount:
+          type: "integer"

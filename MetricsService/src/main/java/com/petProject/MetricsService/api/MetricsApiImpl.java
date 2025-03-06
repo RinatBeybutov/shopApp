@@ -1,6 +1,7 @@
 package com.petProject.MetricsService.api;
 
 import com.petProject.MetricsService.controller.MetricsApi;
+import com.petProject.MetricsService.controller.MetricsApiDelegate;
 import com.petProject.MetricsService.dto.MetricsDto;
 import com.petProject.MetricsService.dto.MetricsDtoHourly;
 import com.petProject.MetricsService.service.StatisticsService;
@@ -12,16 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-//@Component
+@Component
 @RequiredArgsConstructor
-@RestController
-public class MetricsApiImpl implements MetricsApi {
+//@RestController
+public class MetricsApiImpl implements MetricsApiDelegate {
 
     private final StatisticsService service;
 
     @Override
     public ResponseEntity<MetricsDto> getMetrics() {
-        return ResponseEntity.ok(getMetricsDto());
+        return ResponseEntity.ok(service.getTotal());
     }
 
     private static MetricsDto getMetricsDto() {
