@@ -1,8 +1,8 @@
 package com.petProject.OrderService.controller;
 
 import com.petProject.OrderService.dto.ProductCreateDto;
+import com.petProject.OrderService.dto.ProductFilterDto;
 import com.petProject.OrderService.dto.ProductViewDto;
-import com.petProject.OrderService.dto.ProductWithCountViewDto;
 import com.petProject.OrderService.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -25,8 +25,8 @@ public class ProductController {
 
     @GetMapping
     @Operation(summary = "Получение всех продуктов")
-    public ResponseEntity<List<ProductViewDto>> getProducts() {
-        return ResponseEntity.ok(productService.getProducts());
+    public ResponseEntity<List<ProductViewDto>> getProducts(@ModelAttribute ProductFilterDto filter) {
+        return ResponseEntity.ok(productService.getProducts(filter));
     }
 
     @PostMapping

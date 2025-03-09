@@ -61,7 +61,23 @@ class ProductControllerTest extends DbTestContainersConfiguration {
                 .isEqualTo(getCreatedProductDto());
     }
 
-    //TODO: Написать тест на фильтрацию продуктов по категориям
+    @Test
+    @DisplayName("Проверка фильтрации продуктов")
+    void shouldFilterProducts() {
+        var url = urlComponent.getBaseUrl() + PRODUCTS_API_URL + "?name=Coca-cola";
+
+        var response = restTemplate
+                .getForEntity(url, ProductViewDto[].class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        ProductViewDto[] products = response.getBody();
+        assertNotNull(products);
+        assertEquals(1, products.length);
+
+        assertThat(products[0])
+                .usingRecursiveComparison()
+                .isEqualTo(getViewProductDto());
+    }
 
     private URI getProductsUri() {
         return UriComponentsBuilder
