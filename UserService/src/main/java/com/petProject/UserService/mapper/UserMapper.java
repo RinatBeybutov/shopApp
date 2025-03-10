@@ -4,10 +4,13 @@ import com.petProject.UserService.dto.UserDto;
 import com.petProject.UserService.entity.UserEntity;
 import org.mapstruct.Mapper;
 
+/**
+ * Mapper для преобразования пользователей
+ */
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    UserEntity toEntity(UserDto dto);
+  UserEntity toEntity(UserDto dto);
 
-    UserDto toDto(UserEntity entity);
+  UserDto toDto(UserEntity entity);
 }
