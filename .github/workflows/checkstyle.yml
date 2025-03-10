@@ -5,7 +5,7 @@ on:
     branches:
       - 'feature/**'
 jobs:
-  checkstyle:
+  userService:
     runs-on: ubuntu-latest
     steps:
       - name: Step_1 - Checkout
