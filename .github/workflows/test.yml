@@ -1,9 +1,9 @@
 name: Tests
 
 on:
-  pull_request:
+  push:
     branches:
-      - master
+      - 'feature/**'
 jobs:
   userService:
     runs-on: ubuntu-latest
