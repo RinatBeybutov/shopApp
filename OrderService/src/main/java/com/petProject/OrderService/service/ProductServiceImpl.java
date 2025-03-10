@@ -3,12 +3,15 @@ package com.petProject.OrderService.service;
 import com.petProject.OrderService.dto.ProductCreateDto;
 import com.petProject.OrderService.dto.ProductFilterDto;
 import com.petProject.OrderService.dto.ProductViewDto;
+import com.petProject.OrderService.entity.CategoryEntity_;
 import com.petProject.OrderService.entity.ProductEntity;
+import com.petProject.OrderService.entity.ProductEntity_;
 import com.petProject.OrderService.mapper.ProductMapper;
 import com.petProject.OrderService.repository.CategoryRepository;
 import com.petProject.OrderService.repository.ProductRepository;
 import com.petProject.OrderService.repository.ProductToOrderRepository;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
@@ -91,15 +94,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private Predicate getCategoryPredicate(ProductFilterDto filter, Root<ProductEntity> root, CriteriaBuilder criteriaBuilder) {
+        var categoryJoin = root.join(ProductEntity_.category, JoinType.LEFT);
         if (filter.getCategoryUuid() != null) {
-            return criteriaBuilder.equal(root.get("category").get("uuid"), filter.getCategoryUuid());
+            return criteriaBuilder.equal(categoryJoin.get(CategoryEntity_.UUID), filter.getCategoryUuid());
         }
         return null;
     }
 
     private Predicate getNamePredicate(ProductFilterDto filter, Root<ProductEntity> root, CriteriaBuilder criteriaBuilder) {
         if (filter.getName() != null) {
-            return criteriaBuilder.equal(root.get("name"), filter.getName());
+            return criteriaBuilder.equal(root.get(ProductEntity_.NAME), filter.getName());
         }
         return null;
     }
