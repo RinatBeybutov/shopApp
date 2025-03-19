@@ -1,6 +1,7 @@
 package com.petProject.OrderService.service;
 
 import com.petProject.OrderService.dto.OrderCreateDto;
+import com.petProject.OrderService.dto.OrderKafkaDto;
 import com.petProject.OrderService.dto.OrderViewDto;
 import com.petProject.OrderService.dto.ProductWithCountViewDto;
 import com.petProject.OrderService.entity.OrderEntity;
@@ -11,6 +12,8 @@ import com.petProject.OrderService.mapper.ProductMapper;
 import com.petProject.OrderService.repository.OrderRepository;
 import com.petProject.OrderService.repository.ProductRepository;
 import com.petProject.OrderService.repository.ProductToOrderRepository;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +37,8 @@ public class OrderServiceImpl implements OrderService {
 
     private final ProductMapper productMapper;
 
+    private final KafkaProducer kafkaProducer;
+
     @Override
     @Transactional
     public List<OrderViewDto> getOrders(UUID userUuid) {
@@ -47,9 +52,11 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public OrderViewDto create(OrderCreateDto createDto) {
         var orderEntity = orderMapper.toEntity(createDto);
+        orderEntity.setCreatedAt(LocalDate.now());
         orderEntity = orderRepository.save(orderEntity);
         var productToOrderEntities = getProductToOrderEntities(createDto, orderEntity);
         var productsViewDtos = saveAndMapProductToOrders(productToOrderEntities);
+        sendOrderToKafka(orderEntity.getUuid());
         return orderMapper.toDto(orderEntity, productsViewDtos);
     }
 
@@ -91,5 +98,13 @@ public class OrderServiceImpl implements OrderService {
 
         fillProductAndOrder(productToOrderEntities);
         return productToOrderEntities;
+    }
+
+    private void sendOrderToKafka(UUID orderUuid) {
+        int hour = LocalDateTime.now().getHour();
+        String time = hour < 10 ? "0%s.00".formatted(hour)
+            : "%s.00".formatted(hour);
+        OrderKafkaDto orderDto = new OrderKafkaDto(orderUuid, time);
+        kafkaProducer.sendMessage(orderDto);
     }
 }

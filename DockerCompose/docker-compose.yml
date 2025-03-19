@@ -3,6 +3,9 @@
 ##
 
 #version: '3.8'
+include:
+  - utility.yml
+
 networks:
   spring-cloud-network:
     driver: bridge

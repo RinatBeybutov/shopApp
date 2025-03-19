@@ -10,8 +10,8 @@ import java.util.UUID;
 @Data
 @Schema(description = "Сущность заказа")
 public class OrderCreateDto {
-    @Schema(description = "Дата заказа")
-    private LocalDate createdAt;
+    /*@Schema(description = "Дата заказа")
+    private LocalDate createdAt;*/
 
     @Schema(description = "Идентификатор пользователя")
     private UUID userUuid;
