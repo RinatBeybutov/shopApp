@@ -4,6 +4,7 @@ import com.petProject.MetricsService.dto.MetricsDto;
 import com.petProject.MetricsService.dto.MetricsDtoHourly;
 import com.petProject.MetricsService.entity.StatisticEntity;
 import com.petProject.MetricsService.repository.StatisticRepository;
+import java.util.Map.Entry;
 import lombok.RequiredArgsConstructor;
 import org.redisson.api.RMap;
 import org.springframework.stereotype.Service;
@@ -21,17 +22,22 @@ public class StatisticsService {
         RMap<Object, Object> allStatistics = statisticRepository.getAllStatistics();
         int totalOrders = 0;
         List<MetricsDtoHourly> hourly = new ArrayList<>();
-        for (Object key : allStatistics.keySet()) {
-            MetricsDtoHourly metricsDtoHourly = new MetricsDtoHourly();
-            metricsDtoHourly.setHour(key.toString());
-            StatisticEntity stat = (StatisticEntity) allStatistics.get(key);
-            metricsDtoHourly.setOrderCount(stat.getCount());
+        for(var entry : allStatistics.entrySet()) {
+            var metricsDtoHourly = mapToMetricDto(entry);
             hourly.add(metricsDtoHourly);
-            totalOrders += stat.getCount();
+            totalOrders += metricsDtoHourly.getOrderCount();
         }
         MetricsDto metricsDto = new MetricsDto();
         metricsDto.setTotalOrders(totalOrders);
         metricsDto.setHourly(hourly);
         return metricsDto;
+    }
+
+    private MetricsDtoHourly mapToMetricDto(Entry<Object, Object> entry) {
+        MetricsDtoHourly metricsDtoHourly = new MetricsDtoHourly();
+        metricsDtoHourly.setHour(entry.getKey().toString());
+        StatisticEntity stat = (StatisticEntity) entry.getValue();
+        metricsDtoHourly.setOrderCount(stat.getCount());
+        return metricsDtoHourly;
     }
 }

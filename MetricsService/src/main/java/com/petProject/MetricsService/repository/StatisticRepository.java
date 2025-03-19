@@ -13,18 +13,8 @@ public class StatisticRepository {
 
     private final RedissonClient redissonClient;
 
-    public void addStat(StatisticEntity statisticEntity) {
+    public void save(StatisticEntity statisticEntity) {
         redissonClient.getMap(KEY).put(statisticEntity.getTime(), statisticEntity);
-    }
-
-    public void printAll() {
-        RMap<Object, Object> map = redissonClient.getMap(KEY);
-        for (Object key : map.keySet()) {
-            StatisticEntity s = (StatisticEntity) map.get(key);
-            System.out.println(key);
-            System.out.println(s);
-            System.out.println("-----------------------------------");
-        }
     }
 
     public int getCountEntities(){
@@ -33,5 +23,17 @@ public class StatisticRepository {
 
     public RMap<Object, Object> getAllStatistics() {
         return redissonClient.getMap(KEY);
+    }
+
+    public void printAll() {
+        RMap<Object, Object> map = redissonClient.getMap(KEY);
+        System.out.println("-----------------------------------");
+        for (Object key : map.keySet()) {
+            StatisticEntity s = (StatisticEntity) map.get(key);
+            System.out.println(key);
+            System.out.println(s);
+            System.out.println("----------");
+        }
+        System.out.println("-----------------------------------");
     }
 }
