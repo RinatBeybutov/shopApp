@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
     Integer orderCount = entity.getOrderCount();
     entity.setOrderCount(++orderCount);
     RangEnum currentRang = entity.getRang();
-    if(currentRang != RangEnum.MASTER && orderCount > currentRang.getOrderLimit()) {
+    if (currentRang != RangEnum.MASTER && orderCount > currentRang.getOrderLimit()) {
       RangEnum newRang = RangEnum.getNextRang(currentRang);
       entity.setRang(newRang);
     }

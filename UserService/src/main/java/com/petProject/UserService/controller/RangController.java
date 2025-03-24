@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Контроллер для работы с рангами пользователей. {@link UserEntity}
+ */
 @Slf4j
 @RestController
 @RequestMapping(RANGS_API)
@@ -22,7 +25,7 @@ public class RangController {
 
   @PostMapping("/{userUuid}")
   public ResponseEntity<Void> addRang(@PathVariable("userUuid") UUID userId) {
-    System.out.println("Увеличен ранг пользователя " + userId);
+    log.info("Увеличен ранг пользователя {}", userId);
     userService.increaseOrderCount(userId);
     return ResponseEntity.ok().build();
   }

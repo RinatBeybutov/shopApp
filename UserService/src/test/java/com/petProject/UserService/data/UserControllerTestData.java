@@ -25,6 +25,9 @@ public class UserControllerTestData {
     return userViewDto;
   }
 
+  /**
+   * Получение тестового объекта для создания пользователя
+   */
   public static UserCreateDto getCreateUserDto() {
     UserCreateDto dto = new UserCreateDto();
     dto.setEmail("abc@mail.ru");
@@ -32,6 +35,9 @@ public class UserControllerTestData {
     return dto;
   }
 
+  /**
+   * Получение тестового объекта после создания пользователя
+   */
   public static UserViewDto createdViewDto() {
     UserViewDto userViewDto = new UserViewDto();
     userViewDto.setEmail("abc@mail.ru");

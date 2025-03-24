@@ -71,6 +71,9 @@ public class UserEntity {
     setUuid(UUID.randomUUID());
   }
 
+  /**
+   * Ранг пользователя
+   */
   public static enum RangEnum {
 
     NO_RANG(0, 0),
@@ -81,6 +84,7 @@ public class UserEntity {
 
     @Getter
     private final int value;
+
     @Getter
     private final int orderLimit;
 
@@ -89,6 +93,9 @@ public class UserEntity {
       this.orderLimit = orderLimit;
     }
 
+    /**
+     * Возвращает ранг пользователя по значению
+     */
     public static RangEnum valueOf(Integer rang) {
       for (RangEnum rangEnum : RangEnum.values()) {
         if (rang == rangEnum.getValue()) {
@@ -98,9 +105,12 @@ public class UserEntity {
       throw new IllegalArgumentException("Invalid rang value");
     }
 
+    /**
+     * Возвращает следующий ранг пользователя
+     */
     public static RangEnum getNextRang(RangEnum currentRang) {
       for (RangEnum rangEnum : RangEnum.values()) {
-        if(rangEnum.getValue() > currentRang.getValue()) {
+        if (rangEnum.getValue() > currentRang.getValue()) {
           return rangEnum;
         }
       }

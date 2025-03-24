@@ -22,11 +22,6 @@ public class PostgresContainerConfiguration {
 
   static {
     postgreSQLContainer.start();
-
-    /**
-     * spring.flyway.user=postgres
-     * spring.flyway.password=postgres
-     */
     System.setProperty("spring.datasource.url", postgreSQLContainer.getJdbcUrl());
     System.setProperty("spring.flyway.url", postgreSQLContainer.getJdbcUrl());
     System.setProperty("spring.datasource.password", postgreSQLContainer.getPassword());
