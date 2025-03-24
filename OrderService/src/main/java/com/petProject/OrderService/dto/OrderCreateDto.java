@@ -10,9 +10,6 @@ import java.util.UUID;
 @Data
 @Schema(description = "Сущность заказа")
 public class OrderCreateDto {
-    /*@Schema(description = "Дата заказа")
-    private LocalDate createdAt;*/
-
     @Schema(description = "Идентификатор пользователя",
         example = "423bd97c-f1af-413c-9f62-18b4ab158293",
         defaultValue = "423bd97c-f1af-413c-9f62-18b4ab158293")

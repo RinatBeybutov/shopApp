@@ -13,6 +13,5 @@ public interface UserMapper {
 
   UserEntity toEntity(UserCreateDto dto);
 
-  //@Mapping(target = "rang", expression = "java(entity.getRank())")
   UserViewDto toDto(UserEntity entity);
 }
