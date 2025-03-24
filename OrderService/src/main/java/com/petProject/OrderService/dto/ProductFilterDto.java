@@ -9,5 +9,5 @@ public class ProductFilterDto {
 
     private UUID categoryUuid;
 
-    private String name;
+    private String name; //products?name=iphone&categoryUuid=556566
 }
