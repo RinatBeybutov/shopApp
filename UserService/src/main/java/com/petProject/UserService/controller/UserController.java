@@ -46,7 +46,7 @@ public class UserController {
     return ResponseEntity.ok(userService.getList());
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("/{uuid}")
   @Operation(summary = "Получение пользователя по его идентификатору")
   public ResponseEntity<UserViewDto> getUserById(@PathVariable
                                              @Parameter(description = "Идентификатор пользователя")
