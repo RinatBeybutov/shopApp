@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Контроллер для работы с рангами пользователей. {@link UserEntity}
+ *
+ * @author Rinat B
  */
 @Slf4j
 @RestController

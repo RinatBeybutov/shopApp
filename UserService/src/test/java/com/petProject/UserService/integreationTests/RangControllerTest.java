@@ -24,6 +24,8 @@ import org.springframework.http.ResponseEntity;
 
 /**
  * Тесты для RangController
+ *
+ * @author Rinat B
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DisplayName("Тестирование RangController")

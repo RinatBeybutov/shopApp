@@ -1,4 +1,4 @@
-package com.petProject.UserService.service;
+package com.petProject.UserService.utility;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
@@ -8,6 +8,8 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 /**
  * Компонент для отображения эндпоинтов
+ *
+ * @author Rinat B
  */
 @Component
 public class EndpointsListener implements ApplicationListener<ContextRefreshedEvent> {

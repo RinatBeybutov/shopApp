@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Контроллер для работы с пользователями. {@link UserEntity}
  *
- * @author Rinat Beybutov
+ * @author Rinat B
  */
 @RestController
 @RequestMapping(USER_API)
@@ -36,21 +37,21 @@ public class UserController {
   @PostMapping
   @Operation(summary = "Создание пользователя")
   public ResponseEntity<UserViewDto> createUser(@RequestBody UserCreateDto userViewDto) {
-    return ResponseEntity.ok(userService.save(userViewDto));
+    return ResponseEntity.ok(userService.create(userViewDto));
   }
 
   @GetMapping
   @Operation(summary = "Получение списка всех пользователей")
   public ResponseEntity<List<UserViewDto>> getUsers() {
-    return ResponseEntity.ok(userService.getUsers());
+    return ResponseEntity.ok(userService.getList());
   }
 
   @GetMapping("/{id}")
   @Operation(summary = "Получение пользователя по его идентификатору")
   public ResponseEntity<UserViewDto> getUserById(@PathVariable
                                              @Parameter(description = "Идентификатор пользователя")
-                                             UUID id) {
-    return ResponseEntity.ok(userService.getUserById(id));
+                                             UUID uuid) {
+    return ResponseEntity.ok(userService.getOne(uuid));
   }
 
   @DeleteMapping("/{uuid}")
@@ -60,5 +61,14 @@ public class UserController {
                                              UUID uuid) {
     userService.delete(uuid);
     return ResponseEntity.ok().build();
+  }
+
+  @PutMapping("/{uuid}")
+  @Operation(summary = "Обновление пользователя по его идентификатору")
+  public ResponseEntity<UserViewDto> update(@PathVariable
+                                                    @Parameter(description = "Идентификатор пользователя")
+                                                    UUID uuid,
+                                                    @RequestBody UserCreateDto userUpdateDto) {
+    return ResponseEntity.ok(userService.update(uuid, userUpdateDto));
   }
 }

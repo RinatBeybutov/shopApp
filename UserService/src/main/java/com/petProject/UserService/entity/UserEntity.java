@@ -15,6 +15,8 @@ import lombok.Setter;
 
 /**
  * Сущность пользователя
+ *
+ * @author Rinat B
  */
 @Getter
 @Setter
@@ -70,52 +72,4 @@ public class UserEntity {
   private void generateUuid() {
     setUuid(UUID.randomUUID());
   }
-
-  /**
-   * Ранг пользователя
-   */
-  public static enum RangEnum {
-
-    NO_RANG(0, 0),
-    BEGINNER(1, 5),
-    HERO(2, 10),
-    SENSEI(3, 20),
-    MASTER(4, 40);
-
-    @Getter
-    private final int value;
-
-    @Getter
-    private final int orderLimit;
-
-    RangEnum(int value, int orderLimit) {
-      this.value = value;
-      this.orderLimit = orderLimit;
-    }
-
-    /**
-     * Возвращает ранг пользователя по значению
-     */
-    public static RangEnum valueOf(Integer rang) {
-      for (RangEnum rangEnum : RangEnum.values()) {
-        if (rang == rangEnum.getValue()) {
-          return rangEnum;
-        }
-      }
-      throw new IllegalArgumentException("Invalid rang value");
-    }
-
-    /**
-     * Возвращает следующий ранг пользователя
-     */
-    public static RangEnum getNextRang(RangEnum currentRang) {
-      for (RangEnum rangEnum : RangEnum.values()) {
-        if (rangEnum.getValue() > currentRang.getValue()) {
-          return rangEnum;
-        }
-      }
-      throw new IllegalArgumentException("Invalid rang value");
-    }
-  }
-
 }

@@ -2,8 +2,8 @@ package com.petProject.UserService.service;
 
 import com.petProject.UserService.dto.UserCreateDto;
 import com.petProject.UserService.dto.UserViewDto;
+import com.petProject.UserService.entity.RangEnum;
 import com.petProject.UserService.entity.UserEntity;
-import com.petProject.UserService.entity.UserEntity.RangEnum;
 import com.petProject.UserService.mapper.UserMapper;
 import com.petProject.UserService.repository.UserRepository;
 import java.time.LocalDate;
@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Сервис для работы с пользователями
+ *
+ * @author Rinat B
  */
 @Service
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
   @Transactional
   @Override
-  public UserViewDto save(UserCreateDto userCreateDto) {
+  public UserViewDto create(UserCreateDto userCreateDto) {
     UserEntity entity = userMapper.toEntity(userCreateDto);
     entity.setRegisteredAt(LocalDate.now());
     entity.setOrderCount(0);
@@ -37,7 +39,16 @@ public class UserServiceImpl implements UserService {
 
   @Transactional
   @Override
-  public List<UserViewDto> getUsers() {
+  public UserViewDto update(UUID userUuid, UserCreateDto updateDto) {
+    UserEntity entity = userRepository.getByUuid(userUuid);
+    userMapper.update(entity, updateDto);
+    entity = userRepository.save(entity);
+    return userMapper.toDto(entity);
+  }
+
+  @Transactional
+  @Override
+  public List<UserViewDto> getList() {
     return userRepository.findAll()
         .stream()
         .map(userMapper::toDto)
@@ -46,8 +57,8 @@ public class UserServiceImpl implements UserService {
 
   @Transactional
   @Override
-  public UserViewDto getUserById(UUID id) {
-    UserEntity entity = userRepository.getByUuid(id);
+  public UserViewDto getOne(UUID uuid) {
+    UserEntity entity = userRepository.getByUuid(uuid);
     return userMapper.toDto(entity);
   }
 

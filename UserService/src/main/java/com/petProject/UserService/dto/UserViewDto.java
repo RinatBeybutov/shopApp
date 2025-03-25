@@ -1,6 +1,6 @@
 package com.petProject.UserService.dto;
 
-import com.petProject.UserService.entity.UserEntity.RangEnum;
+import com.petProject.UserService.entity.RangEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -9,6 +9,8 @@ import lombok.Setter;
 
 /**
  * Дто пользователя
+ *
+ * @author Rinat B
  */
 @Getter
 @Setter
