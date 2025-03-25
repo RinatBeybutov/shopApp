@@ -53,6 +53,9 @@ public class UserControllerTestData {
     return userViewDto;
   }
 
+  /**
+   * Получение тестового объекта для обновления пользователя
+   */
   public static UserCreateDto userUpdateDto() {
     UserCreateDto userCreateDto = new UserCreateDto();
     userCreateDto.setEmail("new@mail.ru");
@@ -60,6 +63,9 @@ public class UserControllerTestData {
     return userCreateDto;
   }
 
+  /**
+   * Получение тестового объекта для созданного пользователя
+   */
   public static UserViewDto updatedUserDto() {
     UserViewDto userViewDto = new UserViewDto();
     userViewDto.setEmail("new@mail.ru");
