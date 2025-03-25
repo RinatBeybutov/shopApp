@@ -1,5 +1,6 @@
 package com.petProject.UserService.repository;
 
+import com.petProject.UserService.LocalizedException;
 import com.petProject.UserService.entity.UserEntity;
 import java.util.Optional;
 import java.util.UUID;
@@ -8,6 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Репозиторий для работы с пользователями
+ *
+ * @author Rinat B
  */
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
@@ -15,6 +18,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
   default UserEntity getByUuid(UUID uuid) {
     return findByUuid(uuid)
-        .orElseThrow(() -> new RuntimeException("User not found"));
+        .orElseThrow(() -> new LocalizedException("error.user.not_found", uuid));
   }
 }

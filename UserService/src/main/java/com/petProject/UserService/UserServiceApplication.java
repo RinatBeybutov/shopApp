@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Класс для запуска приложения
+ *
+ * @author Rinat B
  */
 @SpringBootApplication
 public class UserServiceApplication {

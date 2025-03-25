@@ -10,6 +10,8 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 /**
  * Конфигурация для запуска тестов с использованием контейнеров Postgres
+ *
+ * @author Rinat B
  */
 @TestConfiguration
 public class PostgresContainerConfiguration {

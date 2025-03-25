@@ -6,6 +6,8 @@ import lombok.Setter;
 
 /**
  * Класс для создания пользователя
+ *
+ * @author Rinat B
  */
 @Getter
 @Setter

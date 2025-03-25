@@ -2,6 +2,8 @@ package com.petProject.UserService.config;
 
 /**
  * API для работы с пользователями.
+ *
+ * @author Rinat B
  */
 public class API {
 

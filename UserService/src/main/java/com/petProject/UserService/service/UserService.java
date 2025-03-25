@@ -7,16 +7,20 @@ import java.util.UUID;
 
 /**
  * Сервис для работы с пользователями.
+ *
+ * @author Rinat B
  */
 public interface UserService {
 
-  UserViewDto save(UserCreateDto userViewDto);
+  UserViewDto create(UserCreateDto userViewDto);
 
-  List<UserViewDto> getUsers();
+  UserViewDto update(UUID userUuid, UserCreateDto updateDto);
 
-  UserViewDto getUserById(UUID id);
+  List<UserViewDto> getList();
 
-  void increaseOrderCount(UUID userId);
+  UserViewDto getOne(UUID uuid);
+
+  void increaseOrderCount(UUID userUuid);
 
   void delete(UUID uuid);
 }
