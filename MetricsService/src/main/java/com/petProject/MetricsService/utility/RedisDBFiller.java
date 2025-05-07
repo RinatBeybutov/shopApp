@@ -4,10 +4,12 @@ import com.petProject.MetricsService.entity.StatisticEntity;
 import com.petProject.MetricsService.repository.StatisticRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Profile("dev")
 public class RedisDBFiller {
 
     private final StatisticRepository statisticRepository;
