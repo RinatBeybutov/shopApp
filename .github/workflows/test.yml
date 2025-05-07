@@ -48,8 +48,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Maven MetricService Package
-        working-directory: ./MetricService/
+        working-directory: ./MetricsService/
         run: mvn -B clean package -DskipTests
       - name: Run MetricService Tests
-        working-directory: ./MetricService/
+        working-directory: ./MetricsService/
         run: mvn -B test --file pom.xml
