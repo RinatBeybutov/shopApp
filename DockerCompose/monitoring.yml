@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.35.0  # выбираем версию Prometheus
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"               # открываем порт для доступа к интерфейсу Prometheus
+    volumes:
+      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"  # монтируем конфигурацию
+      - "./prometheus/data:/prometheus"                           # монтируем директорию для сохранения данных
+
+  grafana:
+    image: grafana/grafana:9.3.3  # выбираем версию Grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"               # открываем порт для доступа к интерфейсу Grafana
+    depends_on:
+      - prometheus                 # указываем зависимость от Prometheus
+    volumes:
+      - "./grafana/data:/var/lib/grafana"           # монтируем директорию для сохранения данных
+      - "./grafana/provisioning/:/etc/grafana/provisioning/"  # монтируем конфигурацию (опционально)
+
+networks:
+  default:
+    driver: bridge
