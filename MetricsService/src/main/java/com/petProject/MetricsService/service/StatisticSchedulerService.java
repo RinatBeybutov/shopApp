@@ -28,9 +28,9 @@ public class StatisticSchedulerService {
         var now = LocalDateTime.now();
         int hour = now.getHour();
 
-        /*if(hour > CLOSE_HOUR || hour <= OPEN_HOUR) {
+        if(hour > CLOSE_HOUR || hour <= OPEN_HOUR) {
             return;
-        }*/
+        }
 
         var orders = orderRepository.getList();
 
