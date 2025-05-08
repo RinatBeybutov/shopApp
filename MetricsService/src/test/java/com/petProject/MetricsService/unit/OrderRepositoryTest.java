@@ -24,6 +24,8 @@ class OrderRepositoryTest {
   @Test
   @DisplayName("Проверка сохранения заказа")
   void test() {
+    orderRepository.clear();
+
     OrderEntity orderEntity = new OrderEntity();
     orderEntity.setOrderUuid(UUID.fromString("5ca8cb6b-aaea-4a72-a46a-b12198ff3557"));
     orderEntity.setTime("12.00");
