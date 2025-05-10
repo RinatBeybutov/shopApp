@@ -1,6 +1,6 @@
-package com.petProject.MetricsService.repository;
+package com.petProject.MetricsService.repository.redis;
 
-import com.petProject.MetricsService.entity.OrderEntity;
+import com.petProject.MetricsService.entity.redis.OrderEntity;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

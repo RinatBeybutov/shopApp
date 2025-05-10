@@ -1,4 +1,4 @@
-package com.petProject.MetricsService.entity;
+package com.petProject.MetricsService.entity.redis;
 
 import lombok.*;
 import org.springframework.data.redis.core.RedisHash;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class StatisticEntity implements Serializable {
+public class RedisStatsEntity implements Serializable {
 
     // Время в часах (19.00)
     private String time;

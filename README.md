@@ -38,6 +38,12 @@ http://localhost:8082/swagger-ui/index.html
 
 Сервис для работы с метриками.
 
+Запуск вспомогательных контейнеров для локальной разработки:
+
+``` bash
+docker compose -f utility-app.yml up -d
+```
+
 ### UI для swagger
 
 http://localhost:8081/swagger-ui/index.html

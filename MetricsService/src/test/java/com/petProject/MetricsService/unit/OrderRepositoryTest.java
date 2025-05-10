@@ -3,8 +3,8 @@ package com.petProject.MetricsService.unit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.petProject.MetricsService.config.RedisContainerConfig;
-import com.petProject.MetricsService.entity.OrderEntity;
-import com.petProject.MetricsService.repository.OrderRepository;
+import com.petProject.MetricsService.entity.redis.OrderEntity;
+import com.petProject.MetricsService.repository.redis.OrderRepository;
 import java.util.List;
 import java.util.UUID;
 

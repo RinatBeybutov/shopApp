@@ -1,9 +1,9 @@
 package com.petProject.MetricsService.utility;
 
-import com.petProject.MetricsService.entity.OrderEntity;
-import com.petProject.MetricsService.entity.StatisticEntity;
-import com.petProject.MetricsService.repository.OrderRepository;
-import com.petProject.MetricsService.repository.StatisticRepository;
+import com.petProject.MetricsService.entity.redis.OrderEntity;
+import com.petProject.MetricsService.entity.redis.RedisStatsEntity;
+import com.petProject.MetricsService.repository.redis.OrderRepository;
+import com.petProject.MetricsService.repository.redis.RedisStatsRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
@@ -17,19 +17,19 @@ import java.util.UUID;
 @Profile("dev")
 public class RedisDBFiller {
 
-    private final StatisticRepository statisticRepository;
+    private final RedisStatsRepository redisStatsRepository;
 
     private final OrderRepository orderRepository;
 
     @PostConstruct
     private void init() {
-        if (statisticRepository.getCountEntities() == 0) {
-            statisticRepository.save(new StatisticEntity("19.00", 10));
-            statisticRepository.save(new StatisticEntity("20.00", 5));
-            statisticRepository.save(new StatisticEntity("21.00", 3));
+        if (redisStatsRepository.getCountEntities() == 0) {
+            redisStatsRepository.save(new RedisStatsEntity("19.00", 10));
+            redisStatsRepository.save(new RedisStatsEntity("20.00", 5));
+            redisStatsRepository.save(new RedisStatsEntity("21.00", 3));
         }
 
-        statisticRepository.printAll();
+        redisStatsRepository.printAll();
 
         if(orderRepository.getList().isEmpty()) {
             orderRepository.save(getOneOrder());
