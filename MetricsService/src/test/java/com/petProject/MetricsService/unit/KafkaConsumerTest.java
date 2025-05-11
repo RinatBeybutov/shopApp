@@ -24,7 +24,10 @@ import java.util.concurrent.TimeUnit;
 import static org.awaitility.Awaitility.await;
 
 @DisplayName("Тесты для получения сообщения из кафки")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        properties = {
+        "spring.flyway.enabled=false"
+        })
 @Import(value = {KafkaContainerConfig.class, KafkaTestConfig.class})
 @ActiveProfiles("test")
 class KafkaConsumerTest {

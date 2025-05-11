@@ -3,8 +3,8 @@ package com.petProject.MetricsService.unit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.petProject.MetricsService.config.RedisContainerConfig;
-import com.petProject.MetricsService.entity.OrderEntity;
-import com.petProject.MetricsService.repository.OrderRepository;
+import com.petProject.MetricsService.entity.redis.OrderEntity;
+import com.petProject.MetricsService.repository.redis.OrderRepository;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        properties = {
+                "spring.flyway.enabled=false"
+        })
 @Import(RedisContainerConfig.class)
 class OrderRepositoryTest {
 

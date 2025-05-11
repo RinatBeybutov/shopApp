@@ -1,4 +1,4 @@
-package com.petProject.MetricsService.entity;
+package com.petProject.MetricsService.entity.redis;
 
 import java.io.Serializable;
 import java.util.UUID;

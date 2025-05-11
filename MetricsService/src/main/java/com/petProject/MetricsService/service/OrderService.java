@@ -1,8 +1,8 @@
 package com.petProject.MetricsService.service;
 
 import com.petProject.MetricsService.dto.OrderKafkaDto;
-import com.petProject.MetricsService.entity.OrderEntity;
-import com.petProject.MetricsService.repository.OrderRepository;
+import com.petProject.MetricsService.entity.redis.OrderEntity;
+import com.petProject.MetricsService.repository.redis.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
