@@ -1,9 +1,9 @@
 name: Tests
 
 on:
-  pull_request:
+  push:
     branches:
-      - master
+      - 'feature/**'
 jobs:
   userService:
     runs-on: ubuntu-latest
@@ -36,4 +36,20 @@ jobs:
         run: mvn -B clean package -DskipTests
       - name: Run OrderService Tests
         working-directory: ./OrderService/
+        run: mvn -B test --file pom.xml
+  metricService:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Maven MetricService Package
+        working-directory: ./MetricsService/
+        run: mvn -B clean package -DskipTests
+      - name: Run MetricService Tests
+        working-directory: ./MetricsService/
         run: mvn -B test --file pom.xml

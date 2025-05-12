@@ -1,14 +1,26 @@
 package com.petProject.UserService.service;
 
-import com.petProject.UserService.dto.UserDto;
-
+import com.petProject.UserService.dto.UserCreateDto;
+import com.petProject.UserService.dto.UserViewDto;
 import java.util.List;
+import java.util.UUID;
 
+/**
+ * Сервис для работы с пользователями.
+ *
+ * @author Rinat B
+ */
 public interface UserService {
 
-    UserDto save(UserDto userDto);
+  UserViewDto create(UserCreateDto userViewDto);
 
-    List<UserDto> getUsers();
+  UserViewDto update(UUID userUuid, UserCreateDto updateDto);
 
-    UserDto getUserById(Integer id);
+  List<UserViewDto> getList();
+
+  UserViewDto getOne(UUID uuid);
+
+  void increaseOrderCount(UUID userUuid);
+
+  void delete(UUID uuid);
 }
