@@ -4,11 +4,12 @@
 
 #version: '3.8'
 include:
-  - utility.yml
+  - utility-app.yml
 
 networks:
   spring-cloud-network:
     driver: bridge
+    external: true
 
 services:
   dozzle:
@@ -60,51 +61,5 @@ services:
       - FLYWAY_URL=jdbc:postgresql://db-postgres:5432/pizzeria
     ports:
       - "8082:8082"
-    networks:
-      - spring-cloud-network
-
-  db-postgres:
-    image: 'postgres:13-alpine'
-    container_name: db-postgres
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=pizzeria
-    volumes:
-      - .:/docker-entrypoint-initdb.d
-    healthcheck:
-      test: pg_isready -d postgres
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 5s
-    ports:
-      - "5400:5432"
-    networks:
-      - spring-cloud-network
-
-  keycloak:
-    image: quay.io/keycloak/keycloak:20.0.2
-    container_name: keycloak
-    command:
-      - start --auto-build --db postgres --hostname-strict-https false --hostname-strict false --proxy edge --http-enabled true --import-realm --spi-user-profile-legacy-user-profile-read-only-attributes *_RES_ACCESS_MODE
-    env_file:
-      - ./.env
-    ports:
-      - 8200:8080
-    volumes:
-      - type: bind
-        source: ./keycloak/realm-export.json
-        target: /opt/keycloak/data/import/realm-export.json
-        read_only: false
-    depends_on:
-      db-postgres:
-        condition: service_healthy
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://0.0.0.0:8080/realms/master" ]
-      start_period: 10s
-      interval: 30s
-      retries: 3
-      timeout: 5s
     networks:
       - spring-cloud-network

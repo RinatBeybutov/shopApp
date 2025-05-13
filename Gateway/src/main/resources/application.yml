@@ -11,6 +11,14 @@ logging:
           gateway: TRACE
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8200/realms/App
+          jwk-set-uri: http://${keycloak.host:localhost}:${keycloak.port:8200}/realms/App/protocol/openid-connect/certs
   application:
     name: Gateway
   cloud:
