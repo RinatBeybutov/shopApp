@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Rinat B
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -25,6 +27,8 @@ public class UserServiceImpl implements UserService {
   private final UserRepository userRepository;
 
   private final UserMapper userMapper;
+
+  private final KeycloakService keycloakService;
 
   @Transactional
   @Override
@@ -34,6 +38,9 @@ public class UserServiceImpl implements UserService {
     entity.setOrderCount(0);
     entity.setRang(RangEnum.NO_RANG);
     entity = userRepository.save(entity);
+
+    keycloakService.save(userCreateDto, entity.getUuid());
+
     return userMapper.toDto(entity);
   }
 
@@ -81,5 +88,6 @@ public class UserServiceImpl implements UserService {
   public void delete(UUID uuid) {
     UserEntity entity = userRepository.getByUuid(uuid);
     userRepository.delete(entity);
+    keycloakService.delete(uuid);
   }
 }

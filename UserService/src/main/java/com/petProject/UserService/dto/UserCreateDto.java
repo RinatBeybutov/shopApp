@@ -18,4 +18,7 @@ public class UserCreateDto {
 
   @Schema(description = "Email пользователя")
   private String email;
+
+  @Schema(description = "Пароль пользователя")
+  private String password;
 }

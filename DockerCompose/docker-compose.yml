@@ -4,11 +4,12 @@
 
 #version: '3.8'
 include:
-  - utility.yml
+  - utility-app.yml
 
 networks:
   spring-cloud-network:
     driver: bridge
+    external: true
 
 services:
   dozzle:
@@ -60,17 +61,5 @@ services:
       - FLYWAY_URL=jdbc:postgresql://db-postgres:5432/pizzeria
     ports:
       - "8082:8082"
-    networks:
-      - spring-cloud-network
-
-  db-postgres:
-    image: 'postgres:13-alpine'
-    container_name: db-postgres
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=pizzeria
-    ports:
-      - "5432:5432"
     networks:
       - spring-cloud-network
