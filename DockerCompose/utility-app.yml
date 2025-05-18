@@ -1,7 +1,6 @@
 networks:
   spring-cloud-network:
     driver: bridge
-    external: true
 
 services:
   db-postgres:

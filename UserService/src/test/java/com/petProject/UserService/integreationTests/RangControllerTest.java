@@ -1,21 +1,20 @@
 package com.petProject.UserService.integreationTests;
 
 import static com.petProject.UserService.config.API.USER_API;
-import static com.petProject.UserService.data.UserControllerTestData.createdViewDto;
 import static com.petProject.UserService.data.UserControllerTestData.getCreateUserDto;
-import static com.petProject.UserService.data.UserControllerTestData.getViewUserDto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.petProject.UserService.config.API;
 import com.petProject.UserService.configuration.PostgresContainerConfiguration;
 import com.petProject.UserService.dto.UserViewDto;
+import com.petProject.UserService.service.KeycloakService;
 import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
@@ -34,6 +33,9 @@ class RangControllerTest {
 
   @Autowired
   private TestRestTemplate restTemplate;
+
+  @MockBean
+  private KeycloakService keycloakService;
 
   @Test
   @DisplayName("Проверка увеличения ранга пользователя")
