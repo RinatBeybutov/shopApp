@@ -9,7 +9,8 @@ ShopApplication - это бэкенд для пиццерии, в дальней
 
 ## Gateway 
 
-Этот сервис представляет собой шлюз, который перенаправляет запросы на нужные сервисы
+Этот сервис представляет собой шлюз, который перенаправляет запросы на нужные сервисы.
+Шлюх проверяет токен авторизации, который выдает keycloak.
 
 ## UserService
 
@@ -28,7 +29,8 @@ http://localhost:8083/swagger-ui/index.html
 
 ## OrderService
 
-Предоставляет возможность выполнения CRUD операций с заказами, продуктами и категориями
+Предоставляет возможность выполнения CRUD операций с заказами, продуктами и категориями.
+Публикация сообщения о новом заказе в kafka.
 
 ### UI для swagger
 
@@ -36,7 +38,10 @@ http://localhost:8082/swagger-ui/index.html
 
 ## MetricService
 
-Сервис для работы с метриками.
+Сервис для работы с метриками:
+- Получение из кафки сообщений о новых заказах
+- Подведение статистики о количестве заказов каждый час
+- Сохранение статистики за весь день в sql
 
 Запуск вспомогательных контейнеров для локальной разработки:
 
@@ -50,23 +55,16 @@ http://localhost:8081/swagger-ui/index.html
 
 # Список технологий и библиотек
 
-* Spring Boot (Web, Data)
+* Spring Boot (Web, Data, Security)
+* PostgreSql
 * Docker
 * Swagger
 * Junit, Mockito, Testcontainers
 * Redis
 * GitHub Actions (CI)
+* Kafka
 * Lombok
 * Mapstruct
-
-Дополнительно:
-
-* k8s
-* Kafka
-* i18n
 * Keycloak
 * Scheduling spring
-
-
-
-
+* Internalization spring
