@@ -4,6 +4,7 @@ import static com.petProject.UserService.config.API.USER_API;
 
 import com.petProject.UserService.dto.UserCreateDto;
 import com.petProject.UserService.dto.UserViewDto;
+import com.petProject.UserService.entity.UserEntity;
 import com.petProject.UserService.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

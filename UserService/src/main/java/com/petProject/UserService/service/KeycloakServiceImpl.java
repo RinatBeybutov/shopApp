@@ -45,7 +45,7 @@ public class KeycloakServiceImpl implements KeycloakService {
         .firstName("First name")
         .lastName("Last name")
         .enabled(true)
-        .verified(true)
+        .emailVerified(true)
         .build();
 
     HttpHeaders headers = new HttpHeaders();
