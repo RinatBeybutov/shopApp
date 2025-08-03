@@ -27,7 +27,5 @@ public class UserKeycloakCreateDto {
 
   private Boolean enabled;
 
-  private Boolean verified;
-
   private List<CredentionalKeycloakDto> credentials;
 }
